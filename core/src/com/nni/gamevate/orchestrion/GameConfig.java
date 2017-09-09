@@ -1,6 +1,8 @@
 package com.nni.gamevate.orchestrion;
 
 public class GameConfig {
+	
+	public static final float MAP_SCALE = (1.0f/32.0f);
 
 	public static final float WORLD_WIDTH = 25f;
 	public static final float WORLD_HEIGHT = 15f;

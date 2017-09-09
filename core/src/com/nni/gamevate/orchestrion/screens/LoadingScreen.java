@@ -2,6 +2,7 @@ package com.nni.gamevate.orchestrion.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.nni.gamevate.orchestrion.GameConfig;
 import com.nni.gamevate.orchestrion.Orchestrion;
+import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 
 public class LoadingScreen extends ScreenAdapter {
 	
@@ -37,6 +39,9 @@ public class LoadingScreen extends ScreenAdapter {
 		camera = new OrthographicCamera();
 		viewport = new FitViewport(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera);
 		renderer = new ShapeRenderer();
+		
+		assetManager.load(AssetDescriptors.FUR_ELISE);
+		//assetManager.load(AssetDescriptors.SPLASH_BACKGROUND);
 	}
 
 	@Override
@@ -55,7 +60,7 @@ public class LoadingScreen extends ScreenAdapter {
         renderer.end();
         
         if(changeScreen){
-        	orchestrion.setScreen(new LevelScreen(orchestrion));
+        	orchestrion.setScreen(new LevelSelectScreen(orchestrion));
         }
 	}
 

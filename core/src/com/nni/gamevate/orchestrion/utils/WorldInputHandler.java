@@ -3,7 +3,7 @@ package com.nni.gamevate.orchestrion.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.nni.gamevate.orchestrion.screens.WorldScreen;
+import com.nni.gamevate.orchestrion.screens.GamePlayScreen;
 
 public class WorldInputHandler extends InputAdapter {
 	
@@ -14,7 +14,7 @@ public class WorldInputHandler extends InputAdapter {
 				|| Gdx.input.isTouched();
 		
 		if(jump == true){			
-			if(WorldScreen.gameOver == false){			
+			if(GamePlayScreen.gameOver == false){			
 				//hero jumps
 			}
 		}

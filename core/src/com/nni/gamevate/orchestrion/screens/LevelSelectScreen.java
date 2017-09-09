@@ -7,11 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.controllers.LevelSelectorController;
-import com.nni.gamevate.orchestrion.levels.TestLevel;
+import com.nni.gamevate.orchestrion.levels.Level;
 import com.nni.gamevate.orchestrion.renderers.LevelSelectorRenderer;
 
-public class LevelScreen extends ScreenAdapter {
-	private static final String TAG = LevelScreen.class.getSimpleName();
+public class LevelSelectScreen extends ScreenAdapter {
+	private static final String TAG = LevelSelectScreen.class.getSimpleName();
 	
 	private Orchestrion orchestrion;
 	public static LevelSelectorController controller;
@@ -22,7 +22,7 @@ public class LevelScreen extends ScreenAdapter {
 	
 	private Music backgroundMusic;
 		
-	public LevelScreen(Orchestrion orchestrion) {
+	public LevelSelectScreen(Orchestrion orchestrion) {
 		this.orchestrion = orchestrion;
 		batch = Orchestrion.spriteBatch;
 		assetManager = Orchestrion.assetManager;
@@ -43,7 +43,7 @@ public class LevelScreen extends ScreenAdapter {
 		controller.update(delta);
 		renderer.render(delta);
 		
-		orchestrion.setScreen(new WorldScreen(orchestrion, new TestLevel()));
+		orchestrion.setScreen(new GamePlayScreen(orchestrion, new Level("maps/orchestrion.tmx")));
 	}
 	
 	@Override

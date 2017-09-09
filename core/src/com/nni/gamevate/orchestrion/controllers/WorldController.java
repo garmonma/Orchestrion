@@ -6,7 +6,7 @@ import java.util.List;
 import com.badlogic.ashley.core.Entity;
 import com.nni.gamevate.orchestrion.entities.Ry;
 import com.nni.gamevate.orchestrion.levels.Level;
-import com.nni.gamevate.orchestrion.screens.WorldScreen;
+import com.nni.gamevate.orchestrion.screens.GamePlayScreen;
 import com.nni.gamevate.orchestrion.utils.Logger;
 
 public class WorldController extends AbstractController{
@@ -14,10 +14,12 @@ public class WorldController extends AbstractController{
 	private float camSpeed;
 	private float lastCamDelta;
 	private float camXPos;
+	private Level level;
 	
 	private List<Entity> entities = new ArrayList<Entity>();
 	
 	public WorldController(Level level){
+		this.level = level;
 		init();
 	}
 
@@ -33,7 +35,7 @@ public class WorldController extends AbstractController{
 
 	@Override
 	public void update(float delta) {
-		if(WorldScreen.gameOver == true){
+		if(GamePlayScreen.gameOver == true){
 			return;
 		}
 		
@@ -43,6 +45,10 @@ public class WorldController extends AbstractController{
 	private void updateCamera(float delta){
 		lastCamDelta = camSpeed * delta;
 		camXPos += lastCamDelta;
+	}
+	
+	public Level getLevel(){
+		return level;
 	}
 	
 	public List<Entity> getEntities(){

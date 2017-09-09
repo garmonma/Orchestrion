@@ -10,9 +10,9 @@ import com.nni.gamevate.orchestrion.levels.Level;
 import com.nni.gamevate.orchestrion.renderers.WorldRenderer;
 import com.nni.gamevate.orchestrion.utils.WorldInputHandler;
 
-public class WorldScreen extends ScreenAdapter {
+public class GamePlayScreen extends ScreenAdapter {
 	
-	private static final String TAG = WorldScreen.class.getSimpleName();
+	private static final String TAG = GamePlayScreen.class.getSimpleName();
 	
 	public WorldController controller;	
 	public static boolean gameOver;
@@ -26,7 +26,7 @@ public class WorldScreen extends ScreenAdapter {
 	private AssetManager assetManager;
 	private WorldInputHandler inputHandler;
 	
-	public WorldScreen(Orchestrion orchestrion, Level level){
+	public GamePlayScreen(Orchestrion orchestrion, Level level){
 		this.orchestrion = orchestrion;
 		batch = Orchestrion.spriteBatch;
 		assetManager = Orchestrion.assetManager;
@@ -53,7 +53,7 @@ public class WorldScreen extends ScreenAdapter {
 		renderer.render(delta);
 		
 		if((gameOver || victory) && inputHandler.jump == true){
-			orchestrion.setScreen(new LevelScreen(orchestrion));
+			orchestrion.setScreen(new LevelSelectScreen(orchestrion));
 		}
 	}
 

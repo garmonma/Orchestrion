@@ -3,15 +3,19 @@ package com.nni.gamevate.orchestrion.renderers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.nni.gamevate.orchestrion.GameConfig;
+import com.nni.gamevate.orchestrion.Orchestrion;
+import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.controllers.WorldController;
 import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
 import com.nni.gamevate.orchestrion.entities.systems.RenderSystem;
 import com.nni.gamevate.orchestrion.entities.systems.UserControlledSystem;
+import com.nni.gamevate.orchestrion.levels.Level;
 
 public class WorldRenderer implements Renderer {
 	
@@ -35,9 +39,9 @@ public class WorldRenderer implements Renderer {
 		camera = new OrthographicCamera();
 		viewport = new FitViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
 		
-		viewport.getCamera().position.set(1f, 1f,0);
+		viewport.getCamera().position.set(0f, 2f,0);
 		viewport.getCamera().update();
-		viewport.update((int)GameConfig.WORLD_WIDTH, (int)GameConfig.WORLD_HEIGHT);
+		viewport.update((int)GameConfig.WORLD_WIDTH, (int)GameConfig.WORLD_HEIGHT, false);
 		camera.update();
 		
 		engine = new Engine();
@@ -53,21 +57,27 @@ public class WorldRenderer implements Renderer {
 		}
 		
 		renderSystem.addedToEngine(engine);
+		
+		Music music = Orchestrion.assetManager.get(AssetDescriptors.FUR_ELISE);
+		music.setLooping(false);
+		music.play();
 	}
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		Gdx.gl.glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		updateCamera();
+		controller.getLevel().render(camera);
 		engine.update(delta);	
+		
 		
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		viewport.update(width, height);
+		viewport.update(width, height, false);
 	}
 	
 	public void updateCamera(){
