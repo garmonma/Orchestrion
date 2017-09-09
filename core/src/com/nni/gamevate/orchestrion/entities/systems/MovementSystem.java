@@ -22,5 +22,8 @@ public class MovementSystem extends IteratingSystem {
 		
 		transform.pos.x += movement.velocity.x * deltaTime;
 		transform.pos.y += movement.velocity.y * deltaTime;
+		
+		//System.out.println("Movement velocity : "  + movement.velocity);
+		//System.out.println("Movement Position : " + transform.pos);
 	}
 }

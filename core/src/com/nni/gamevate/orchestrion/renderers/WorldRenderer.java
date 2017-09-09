@@ -5,10 +5,12 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.nni.gamevate.orchestrion.GameConfig;
 import com.nni.gamevate.orchestrion.controllers.WorldController;
+import com.nni.gamevate.orchestrion.entities.systems.JumpSystem;
 import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
 import com.nni.gamevate.orchestrion.entities.systems.RenderSystem;
 import com.nni.gamevate.orchestrion.entities.systems.UserControlledSystem;
@@ -21,6 +23,7 @@ public class WorldRenderer implements Renderer {
 	private MovementSystem movementSystem;
 	private RenderSystem renderSystem;
 	private UserControlledSystem userControlledSystem;
+	private JumpSystem jumpSystem;
 	
 	private OrthographicCamera camera;
 	private Viewport viewport;
@@ -33,7 +36,7 @@ public class WorldRenderer implements Renderer {
 	@Override
 	public void init() {
 		camera = new OrthographicCamera();
-		viewport = new FitViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
+		viewport = new ExtendViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
 		
 		viewport.getCamera().position.set(1f, 1f,0);
 		viewport.getCamera().update();
@@ -43,9 +46,12 @@ public class WorldRenderer implements Renderer {
 		engine = new Engine();
 		movementSystem = new MovementSystem();
 		renderSystem = new RenderSystem(camera);
-		userControlledSystem = new UserControlledSystem(camera);
+		jumpSystem = new JumpSystem();
+		userControlledSystem = new UserControlledSystem();
+		
 		engine.addSystem(movementSystem);
 		engine.addSystem(renderSystem);
+		engine.addSystem(jumpSystem);
 		engine.addSystem(userControlledSystem);
 		
 		for(Entity e: controller.getEntities()){
