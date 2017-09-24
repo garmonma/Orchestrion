@@ -6,8 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 public class JumpComponent implements Component {
 
     public final Vector2 gravity = new Vector2(0, -3.82f);
-    public final float mass = 2f;
-    public final Vector2 acceleration = new Vector2();
-    public final Vector2 force = new Vector2();
+    public final Vector2 jumpVelocity = new Vector2(0.0f, 50.0f);
 
 }

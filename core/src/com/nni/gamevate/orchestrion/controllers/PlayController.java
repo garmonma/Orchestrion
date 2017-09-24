@@ -6,21 +6,23 @@ import java.util.List;
 import com.badlogic.ashley.core.Entity;
 import com.nni.gamevate.orchestrion.entities.Ry;
 import com.nni.gamevate.orchestrion.entities.components.MovementComponent;
-import com.nni.gamevate.orchestrion.levels.Level;
+import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
 import com.nni.gamevate.orchestrion.screens.GamePlayScreen;
 import com.nni.gamevate.orchestrion.utils.Logger;
 
-public class WorldController extends AbstractController{
+import maps.Map;
+
+public class PlayController extends AbstractController{
 	private Ry ry;
 
 	private float lastCamDelta;
 	private float camXPos;
-	private Level level;
+	private Map map;
 	
 	private List<Entity> entities = new ArrayList<Entity>();
 	
-	public WorldController(Level level){
-		this.level = level;
+	public PlayController(Map map){
+		this.map = map;
 		init();
 	}
 
@@ -43,12 +45,14 @@ public class WorldController extends AbstractController{
 	}
 	
 	private void updateCamera(float delta){
-		lastCamDelta = ry.getComponent(MovementComponent.class).velocity.x * delta;
-		camXPos += lastCamDelta;
+	//	lastCamDelta = ry.getComponent(MovementComponent.class).velocity.x * delta;
+	//	camXPos += lastCamDelta;
+		
+		camXPos = ry.getComponent(TransformComponent.class).pos.x;
 	}
 	
-	public Level getLevel(){
-		return level;
+	public Map getMap(){
+		return map;
 	}
 	
 	public List<Entity> getEntities(){

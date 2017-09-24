@@ -12,27 +12,29 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.nni.gamevate.orchestrion.GameConfig;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
-import com.nni.gamevate.orchestrion.controllers.WorldController;
+import com.nni.gamevate.orchestrion.controllers.PlayController;
 import com.nni.gamevate.orchestrion.entities.systems.JumpSystem;
 import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
 import com.nni.gamevate.orchestrion.entities.systems.RenderSystem;
-import com.nni.gamevate.orchestrion.entities.systems.UserControlledSystem;
-import com.nni.gamevate.orchestrion.levels.Level;
 
-public class WorldRenderer implements Renderer {
+import maps.Map;
+
+import com.nni.gamevate.orchestrion.entities.systems.InputSystem;
+
+public class PlayRenderer implements Renderer {
 	
-	private WorldController controller;
+	private PlayController controller;
 	
 	private Engine engine;
 	private MovementSystem movementSystem;
 	private RenderSystem renderSystem;
-	private UserControlledSystem userControlledSystem;
+	private InputSystem inputSystem;
 	private JumpSystem jumpSystem;
 	
 	private OrthographicCamera camera;
 	private Viewport viewport;
 	
-	public  WorldRenderer(WorldController controller) {
+	public  PlayRenderer(PlayController controller) {
 		this.controller = controller;
 		init();
 	}
@@ -51,12 +53,12 @@ public class WorldRenderer implements Renderer {
 		movementSystem = new MovementSystem();
 		renderSystem = new RenderSystem(camera);
 		jumpSystem = new JumpSystem();
-		userControlledSystem = new UserControlledSystem();
+		inputSystem = new InputSystem();
 		
 		engine.addSystem(movementSystem);
 		engine.addSystem(renderSystem);
 		engine.addSystem(jumpSystem);
-		engine.addSystem(userControlledSystem);
+		engine.addSystem(inputSystem);
 		
 		for(Entity e: controller.getEntities()){
 			engine.addEntity(e);
@@ -75,7 +77,7 @@ public class WorldRenderer implements Renderer {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		updateCamera();
-		controller.getLevel().render(camera);
+		controller.getMap().render(camera);
 		engine.update(delta);	
 		
 		

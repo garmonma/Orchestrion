@@ -3,9 +3,8 @@ package com.nni.gamevate.orchestrion.events;
 public class Event {
 	
 	public enum EventType{
-		ENEMY_ATTACKED, 
-		JOINED_GROUP, 
-		ENEMY_DEATH
+		PLAYER_JUMPED,
+		
 	}
 	
 	public EventType _type;
@@ -15,6 +14,4 @@ public class Event {
 		_message = message;
 		// TODO Auto-generated constructor stub
 	}
-	
-
 }

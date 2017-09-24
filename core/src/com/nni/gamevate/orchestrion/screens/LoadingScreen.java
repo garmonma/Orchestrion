@@ -60,7 +60,7 @@ public class LoadingScreen extends ScreenAdapter {
         renderer.end();
         
         if(changeScreen){
-        	orchestrion.setScreen(new LevelSelectScreen(orchestrion));
+        	orchestrion.setScreen(new MapSelectScreen(orchestrion));
         }
 	}
 

@@ -6,23 +6,25 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
-import com.nni.gamevate.orchestrion.controllers.LevelSelectorController;
-import com.nni.gamevate.orchestrion.levels.Level;
-import com.nni.gamevate.orchestrion.renderers.LevelSelectorRenderer;
+import com.nni.gamevate.orchestrion.controllers.MapSelectController;
+import com.nni.gamevate.orchestrion.renderers.MapSelectRenderer;
 
-public class LevelSelectScreen extends ScreenAdapter {
-	private static final String TAG = LevelSelectScreen.class.getSimpleName();
+import maps.Map;
+import maps.MapConstants;
+
+public class MapSelectScreen extends ScreenAdapter {
+	private static final String TAG = MapSelectScreen.class.getSimpleName();
 	
 	private Orchestrion orchestrion;
-	public static LevelSelectorController controller;
-	private LevelSelectorRenderer renderer;
+	public static MapSelectController controller;
+	private MapSelectRenderer renderer;
 	
 	private SpriteBatch batch;
 	private AssetManager assetManager;
 	
 	private Music backgroundMusic;
 		
-	public LevelSelectScreen(Orchestrion orchestrion) {
+	public MapSelectScreen(Orchestrion orchestrion) {
 		this.orchestrion = orchestrion;
 		batch = Orchestrion.spriteBatch;
 		assetManager = Orchestrion.assetManager;
@@ -30,8 +32,8 @@ public class LevelSelectScreen extends ScreenAdapter {
 
 	@Override
 	public void show() {
-		controller = new LevelSelectorController();
-		renderer = new LevelSelectorRenderer();
+		controller = new MapSelectController();
+		renderer = new MapSelectRenderer();
 		
 //		backgroundMusic = assetManager.get(AssetDescriptors.LEVEL_SELECTOR_MUSIC);
 //		backgroundMusic.setLooping(true);
@@ -43,7 +45,7 @@ public class LevelSelectScreen extends ScreenAdapter {
 		controller.update(delta);
 		renderer.render(delta);
 		
-		orchestrion.setScreen(new GamePlayScreen(orchestrion, new Level("maps/orchestrion.tmx")));
+		orchestrion.setScreen(new GamePlayScreen(orchestrion, new Map(MapConstants.TEST_MAP)));
 	}
 	
 	@Override

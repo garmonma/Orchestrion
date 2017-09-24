@@ -1,6 +1,6 @@
 package com.nni.gamevate.orchestrion.controllers;
 
-public class LevelSelectorController extends AbstractController {
+public class MapSelectController extends AbstractController {
 
 	@Override
 	protected void init() {

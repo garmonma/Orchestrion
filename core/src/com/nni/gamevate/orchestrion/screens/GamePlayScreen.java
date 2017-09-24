@@ -5,28 +5,29 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nni.gamevate.orchestrion.Orchestrion;
-import com.nni.gamevate.orchestrion.controllers.WorldController;
-import com.nni.gamevate.orchestrion.levels.Level;
-import com.nni.gamevate.orchestrion.renderers.WorldRenderer;
+import com.nni.gamevate.orchestrion.controllers.PlayController;
+import com.nni.gamevate.orchestrion.renderers.PlayRenderer;
 import com.nni.gamevate.orchestrion.utils.WorldInputHandler;
+
+import maps.Map;
 
 public class GamePlayScreen extends ScreenAdapter {
 	
 	private static final String TAG = GamePlayScreen.class.getSimpleName();
 	
-	public WorldController controller;	
+	public PlayController controller;	
 	public static boolean gameOver;
 	public static boolean victory;
 	
 	private Orchestrion orchestrion;
 	
-	private WorldRenderer renderer;
+	private PlayRenderer renderer;
 	
 	private SpriteBatch batch;
 	private AssetManager assetManager;
 	private WorldInputHandler inputHandler;
 	
-	public GamePlayScreen(Orchestrion orchestrion, Level level){
+	public GamePlayScreen(Orchestrion orchestrion, Map level){
 		this.orchestrion = orchestrion;
 		batch = Orchestrion.spriteBatch;
 		assetManager = Orchestrion.assetManager;
@@ -34,14 +35,14 @@ public class GamePlayScreen extends ScreenAdapter {
 		gameOver = false;
 		victory = false;
 		
-		controller = new WorldController(level);
+		controller = new PlayController(level);
 	}
 	
 	@Override
 	public void show() {
 		Gdx.app.log(TAG, "Strarting World Screeen");
 		inputHandler = new WorldInputHandler();		
-		renderer = new WorldRenderer(controller);
+		renderer = new PlayRenderer(controller);
 		Gdx.input.setInputProcessor(inputHandler);
 	}
 	
@@ -53,7 +54,7 @@ public class GamePlayScreen extends ScreenAdapter {
 		renderer.render(delta);
 		
 		if((gameOver || victory) && inputHandler.jump == true){
-			orchestrion.setScreen(new LevelSelectScreen(orchestrion));
+			orchestrion.setScreen(new MapSelectScreen(orchestrion));
 		}
 	}
 

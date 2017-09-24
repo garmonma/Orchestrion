@@ -1,6 +1,6 @@
 package com.nni.gamevate.orchestrion.renderers;
 
-public class LevelSelectorRenderer implements Renderer {
+public class MapSelectRenderer implements Renderer {
 
 	@Override
 	public void init() {
