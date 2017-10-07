@@ -16,9 +16,7 @@ import com.nni.gamevate.orchestrion.controllers.PlayController;
 import com.nni.gamevate.orchestrion.entities.systems.JumpSystem;
 import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
 import com.nni.gamevate.orchestrion.entities.systems.RenderSystem;
-
-import maps.Map;
-
+import com.nni.gamevate.orchestrion.maps.Map;
 import com.nni.gamevate.orchestrion.entities.systems.InputSystem;
 
 public class PlayRenderer implements Renderer {

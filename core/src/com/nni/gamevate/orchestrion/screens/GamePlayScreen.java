@@ -6,10 +6,9 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.controllers.PlayController;
+import com.nni.gamevate.orchestrion.maps.Map;
 import com.nni.gamevate.orchestrion.renderers.PlayRenderer;
 import com.nni.gamevate.orchestrion.utils.WorldInputHandler;
-
-import maps.Map;
 
 public class GamePlayScreen extends ScreenAdapter {
 	

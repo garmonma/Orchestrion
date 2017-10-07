@@ -1,4 +1,4 @@
-package maps;
+package com.nni.gamevate.orchestrion.maps;
 
 public class MapConstants {
 	

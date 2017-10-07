@@ -7,10 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.controllers.MapSelectController;
+import com.nni.gamevate.orchestrion.maps.Map;
+import com.nni.gamevate.orchestrion.maps.MapConstants;
 import com.nni.gamevate.orchestrion.renderers.MapSelectRenderer;
-
-import maps.Map;
-import maps.MapConstants;
 
 public class MapSelectScreen extends ScreenAdapter {
 	private static final String TAG = MapSelectScreen.class.getSimpleName();

@@ -1,4 +1,4 @@
-package maps;
+package com.nni.gamevate.orchestrion.maps;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;

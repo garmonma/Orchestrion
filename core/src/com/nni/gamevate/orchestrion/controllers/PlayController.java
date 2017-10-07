@@ -7,10 +7,9 @@ import com.badlogic.ashley.core.Entity;
 import com.nni.gamevate.orchestrion.entities.Ry;
 import com.nni.gamevate.orchestrion.entities.components.MovementComponent;
 import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
+import com.nni.gamevate.orchestrion.maps.Map;
 import com.nni.gamevate.orchestrion.screens.GamePlayScreen;
 import com.nni.gamevate.orchestrion.utils.Logger;
-
-import maps.Map;
 
 public class PlayController extends AbstractController{
 	private Ry ry;
