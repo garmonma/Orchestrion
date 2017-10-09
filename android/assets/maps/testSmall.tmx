@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="2017.09.27" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextobjectid="15">
+ <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="48" columns="8">
+  <image source="tmw_desert_spacing.png" width="265" height="199"/>
+ </tileset>
+ <tileset firstgid="49" name="platformer_32_mini" tilewidth="16" tileheight="16" tilecount="180" columns="10">
+  <image source="platformer_32_mini.png" width="160" height="288"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="10" height="10" offsetx="-1" offsety="4">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+7,7,7,7,7,0,7,7,7,0
+</data>
+ </layer>
+ <objectgroup name="objectLayer">
+  <object id="6" name="player" x="1" y="98.5" width="32" height="32"/>
+  <object id="12" gid="38" x="47.5" y="131.5" width="32" height="32"/>
+  <object id="14" name="Hello World" x="35" y="27" width="83" height="19">
+   <text wrap="1">Hello World</text>
+  </object>
+ </objectgroup>
+</map>
