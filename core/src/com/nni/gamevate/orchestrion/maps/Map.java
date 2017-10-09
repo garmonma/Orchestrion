@@ -1,6 +1,7 @@
 package com.nni.gamevate.orchestrion.maps;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -30,7 +31,8 @@ public class Map {
 		
 		int columns = layer.getWidth();
 		int rows = layer.getHeight();
-		
+		MapObjects mapObjects = layer.getObjects();
+
 		System.out.println("Columns : " + columns);
 		System.out.println("Rows : " + rows);
 	}
