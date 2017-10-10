@@ -11,7 +11,6 @@ import com.nni.gamevate.orchestrion.entities.UserState;
 import com.nni.gamevate.orchestrion.entities.components.InputComponent;
 
 public class InputSystem extends IteratingSystem {
-	private ComponentMapper<InputComponent> ic = ComponentMapper.getFor(InputComponent.class);
 	private ComponentMapper<UserStateComponent> usc = ComponentMapper.getFor(UserStateComponent.class);
 
 	public InputSystem() {
@@ -21,11 +20,12 @@ public class InputSystem extends IteratingSystem {
 
 	@Override
 	public void processEntity(Entity entity, float deltaTime) {
-	    InputComponent userInput = ic.get(entity);
 	    UserStateComponent userState = usc.get(entity);
-	    // TODO after user jumps, how to set him as grounded when he lands on surface?
+	    
 	    if(Gdx.input.isKeyPressed(Keys.SPACE) && userState.state != UserState.Jumping){
-	    	usc.get(entity).state = UserState.Jumping;
+	    	userState.state = UserState.Jumping;
+	    	userState.stateTime = 0;
+	    	System.out.println("User State Jumping : " + userState.stateTime);
 	    }
 	    
 	}

@@ -5,5 +5,5 @@ import com.nni.gamevate.orchestrion.entities.UserState;
 
 public class UserStateComponent implements Component {
 	public UserState state;
-	public float stateTime;
+	public float stateTime = 0;
 }

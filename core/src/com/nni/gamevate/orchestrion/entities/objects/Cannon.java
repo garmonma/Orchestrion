@@ -12,8 +12,8 @@ public class Cannon extends Entity {
 		TransformComponent transform = new TransformComponent();
 		SizeComponent size = new SizeComponent();
 		
-		size.width = 1f;
-		size.height = 1.5f;
+		size.width = width;
+		size.height = height;
 		transform.pos.set(x, y);
 		
 		add(size);
