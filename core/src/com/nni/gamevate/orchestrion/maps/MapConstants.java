@@ -4,7 +4,7 @@ public class MapConstants {
     
     
     // Object Names
-    public static final String PLAYER = "player";
+    public static final String PLAYER = "PlayerEntity";
     public static final String CANNON = "cannon";
     public static final String PLATFORM = "platform";
     public static final String CHAOS = "chaos";
@@ -15,6 +15,7 @@ public class MapConstants {
     public static final String HEIGHT_KEY = "height";
     public static final String X_KEY = "x";
     public static final String Y_KEY = "y";
+    public static final String TYPE_KEY = "type";
 
     // Maps Urls
     public static final String TEST_MAP = "maps/testSmall.tmx";

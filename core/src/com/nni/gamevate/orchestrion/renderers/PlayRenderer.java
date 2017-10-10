@@ -87,7 +87,9 @@ public class PlayRenderer implements Renderer {
 	}
 	
 	public void updateCamera(){
-		camera.position.x = controller.getCamXPosition();
+		camera.position.x = controller.getCamPosition().x;
+		camera.position.y = controller.getCamPosition().y;
+		camera.position.z = controller.getCamPosition().z;
 		camera.update();
 	}
 }

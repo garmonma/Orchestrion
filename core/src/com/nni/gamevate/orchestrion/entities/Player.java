@@ -26,8 +26,8 @@ public class Player extends Entity {
 
 	// TODO How to initialize multiple animations?
 	texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
-	size.width = 1f;
-	size.height = 1.5f;
+	size.width = width;
+	size.height = height;
 	transform.pos.set(x, y);
 	movement.velocity.set(5.0f, 0);
 	userState.state = UserState.Standing;

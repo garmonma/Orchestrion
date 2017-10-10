@@ -23,6 +23,7 @@ public class Map {
     private TmxMapLoader loader;
     private OrthogonalTiledMapRenderer renderer;
     private List<Entity> entities;
+    private Player player;
 
     public Map(String map) {
 	init(map);
@@ -35,7 +36,7 @@ public class Map {
 	entities = new ArrayList<Entity>();
 
 	tileLayer = (TiledMapTileLayer) map.getLayers().get(0);
-	objectLayer = map.getLayers().get("objectLayer");
+	objectLayer = map.getLayers().get("Object Layer 1");
 
 	int columns = tileLayer.getWidth();
 	int rows = tileLayer.getHeight();
@@ -60,24 +61,39 @@ public class Map {
     public void dispose() {
 	map.dispose();
     }
-    
-    public List<Entity> getEntities(){
+
+    public List<Entity> getEntities() {
 	return entities;
     }
 
-    private Entity processMapObjects(MapObject obj) {
-	float x = Float.parseFloat(obj.getProperties().get(MapConstants.X_KEY).toString());
-	float y = Float.parseFloat(obj.getProperties().get(MapConstants.Y_KEY).toString());
-	float width = Float.parseFloat(obj.getProperties().get(MapConstants.WIDTH_KEY).toString());
-	float height = Float.parseFloat(obj.getProperties().get(MapConstants.WIDTH_KEY).toString());
+    public Player getPlayer() {
+	return player;
+    }
 
-	if(obj.getName() == null){
-	    obj.setName("MISC");
+    private Entity processMapObjects(MapObject obj) {
+	float x = Float.parseFloat(obj.getProperties().get(MapConstants.X_KEY).toString()) * GameConfig.MAP_SCALE;
+	float y = Float.parseFloat(obj.getProperties().get(MapConstants.Y_KEY).toString()) * GameConfig.MAP_SCALE;
+	float width = Float.parseFloat(obj.getProperties().get(MapConstants.WIDTH_KEY).toString()) * GameConfig.MAP_SCALE;
+	float height = Float.parseFloat(obj.getProperties().get(MapConstants.WIDTH_KEY).toString()) * GameConfig.MAP_SCALE;
+	
+	if (obj.getProperties().get(MapConstants.TYPE_KEY) == null ) {
+	    System.out.println("Object Type is null");
+	    return new Cannon(x, y, width, height);
 	}
 	
-	switch (obj.getName()) {
+	String type = obj.getProperties().get(MapConstants.TYPE_KEY).toString();
+	
+
+	System.out.println(obj.getName());
+	System.out.printf("Type %s, X %f, Y %f, Width %f, Height %f \n", type, x, y, width, height);
+	if (obj.getName() == null ) {
+	    obj.setName("MISC");
+	}
+
+	switch (type) {
 	case MapConstants.PLAYER:
-	    return new Player(x, y, width, height);
+	    player = new Player(x, y, width, height);
+	    return player;
 	}
 
 	return new Cannon(x, y, width, height);

@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.nni.gamevate.orchestrion.entities.Player;
+import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
 import com.nni.gamevate.orchestrion.maps.Map;
 import com.nni.gamevate.orchestrion.screens.GamePlayScreen;
 import com.nni.gamevate.orchestrion.utils.Logger;
 
 public class PlayController extends AbstractController {
-    private float camXPos;
+    private Vector3 camPos;
     private Map map;
+    private Player player;
 
     private List<Entity> entities = new ArrayList<Entity>();
 
@@ -22,7 +27,11 @@ public class PlayController extends AbstractController {
     @Override
     protected void init() {
 	Logger.log("init World");
+	
 	entities = map.getEntities();
+	player = map.getPlayer();
+	
+	camPos = new Vector3(player.getComponent(TransformComponent.class).pos, 0);
     }
 
     @Override
@@ -35,7 +44,7 @@ public class PlayController extends AbstractController {
     }
 
     private void updateCamera(float delta) {
-	// camXPos = ry.getComponent(TransformComponent.class).pos.x;
+	camPos = new Vector3(player.getComponent(TransformComponent.class).pos, 0);
     }
 
     public Map getMap() {
@@ -46,8 +55,8 @@ public class PlayController extends AbstractController {
 	return entities;
     }
 
-    public float getCamXPosition() {
-	return camXPos;
+    public Vector3 getCamPosition() {
+	return camPos;
     }
 
 }
