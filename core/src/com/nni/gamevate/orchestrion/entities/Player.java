@@ -9,7 +9,7 @@ import com.nni.gamevate.orchestrion.entities.components.MovementComponent;
 import com.nni.gamevate.orchestrion.entities.components.SizeComponent;
 import com.nni.gamevate.orchestrion.entities.components.TextureComponent;
 import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
-import com.nni.gamevate.orchestrion.entities.components.UserStateComponent;
+import com.nni.gamevate.orchestrion.entities.components.StateComponent;
 import com.nni.gamevate.orchestrion.entities.components.InputComponent;
 
 public class Player extends Entity {
@@ -22,7 +22,7 @@ public class Player extends Entity {
 	MovementComponent movement = new MovementComponent();
 	JumpComponent jump = new JumpComponent();
 	InputComponent input = new InputComponent();
-	UserStateComponent userState = new UserStateComponent();
+	StateComponent userState = new StateComponent();
 
 	// TODO How to initialize multiple animations?
 	texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
@@ -30,8 +30,8 @@ public class Player extends Entity {
 	size.height = height;
 	transform.pos.set(x, y);
 	movement.velocity.set(5.0f, 0);
-	userState.state = UserState.Standing;
-	userState.stateTime = 0;
+	userState.set(StateComponent.STATE_NORMAL);
+	userState.time = 0;
 
 	add(texture);
 	add(transform);
