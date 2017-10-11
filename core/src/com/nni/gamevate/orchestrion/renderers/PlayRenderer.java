@@ -17,7 +17,6 @@ import com.nni.gamevate.orchestrion.entities.systems.JumpSystem;
 import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
 import com.nni.gamevate.orchestrion.entities.systems.RenderSystem;
 import com.nni.gamevate.orchestrion.maps.Map;
-import com.nni.gamevate.orchestrion.entities.systems.InputSystem;
 
 public class PlayRenderer implements Renderer {
 	
@@ -26,7 +25,6 @@ public class PlayRenderer implements Renderer {
 	private Engine engine;
 	private MovementSystem movementSystem;
 	private RenderSystem renderSystem;
-	private InputSystem inputSystem;
 	private JumpSystem jumpSystem;
 	
 	private OrthographicCamera camera;
@@ -51,12 +49,10 @@ public class PlayRenderer implements Renderer {
 		movementSystem = new MovementSystem();
 		renderSystem = new RenderSystem(camera);
 		jumpSystem = new JumpSystem();
-		inputSystem = new InputSystem();
 		
 		engine.addSystem(movementSystem);
 		engine.addSystem(renderSystem);
 		engine.addSystem(jumpSystem);
-		engine.addSystem(inputSystem);
 		
 		for(Entity e: controller.getEntities()){
 			engine.addEntity(e);
