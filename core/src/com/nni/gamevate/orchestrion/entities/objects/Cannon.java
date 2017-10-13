@@ -14,7 +14,7 @@ public class Cannon extends Entity {
 		
 		size.width = width;
 		size.height = height;
-		transform.pos.set(x, y);
+		transform.pos.set(x, y, 0);
 		
 		add(size);
 		add(transform);

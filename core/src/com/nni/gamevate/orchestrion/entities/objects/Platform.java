@@ -13,7 +13,7 @@ public class Platform extends Entity {
 	
 	size.width = 1f;
 	size.height = 1.5f;
-	transform.pos.set(x, y);
+	transform.pos.set(x, y, 0);
 	
 	add(size);
 	add(transform);
