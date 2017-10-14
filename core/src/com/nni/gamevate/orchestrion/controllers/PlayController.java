@@ -5,7 +5,8 @@ import java.util.List;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector3;
-import com.nni.gamevate.orchestrion.entities.Player;
+import com.nni.gamevate.orchestrion.entities.DataObject;
+import com.nni.gamevate.orchestrion.entities.PlayerData;
 import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
 import com.nni.gamevate.orchestrion.maps.Map;
 import com.nni.gamevate.orchestrion.screens.GamePlayScreen;
@@ -14,9 +15,10 @@ import com.nni.gamevate.orchestrion.utils.Logger;
 public class PlayController extends AbstractController {
 	private Vector3 camPos;
 	private Map map;
-	private Player player;
+	private PlayerData playerData;
+	private Entity player;
 
-	private List<Entity> entities = new ArrayList<Entity>();
+	private List<DataObject> dataObjects = new ArrayList<DataObject>();
 
 	public PlayController(Map map) {
 		this.map = map;
@@ -27,14 +29,17 @@ public class PlayController extends AbstractController {
 	protected void init() {
 		Logger.log("init World");
 
-		entities = map.getEntities();
-		player = map.getPlayer();
+		dataObjects = map.getObjects();
+		playerData = map.getPlayer();
 
-		camPos = new Vector3(player.getComponent(TransformComponent.class).pos);
 	}
 
 	@Override
 	public void update(float delta) {
+		if (camPos == null && player != null) {
+			camPos = new Vector3(player.getComponent(TransformComponent.class).pos);
+		}
+
 		if (GamePlayScreen.gameOver == true) {
 			return;
 		}
@@ -50,12 +55,20 @@ public class PlayController extends AbstractController {
 		return map;
 	}
 
-	public List<Entity> getEntities() {
-		return entities;
+	public List<DataObject> getObjects() {
+		return dataObjects;
 	}
 
 	public Vector3 getCamPosition() {
 		return camPos;
+	}
+
+	public PlayerData getPlayer() {
+		return playerData;
+	}
+
+	public void setPlayer(Entity e) {
+		this.player = e;
 	}
 
 }

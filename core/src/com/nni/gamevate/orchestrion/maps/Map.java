@@ -13,9 +13,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.nni.gamevate.orchestrion.GameConfig;
-import com.nni.gamevate.orchestrion.entities.Chaos;
-import com.nni.gamevate.orchestrion.entities.Player;
-import com.nni.gamevate.orchestrion.entities.objects.Cannon;
+import com.nni.gamevate.orchestrion.entities.ChaosData;
+import com.nni.gamevate.orchestrion.entities.DataObject;
+import com.nni.gamevate.orchestrion.entities.PlayerData;
+import com.nni.gamevate.orchestrion.entities.objects.CannonData;
 
 public class Map {
 	private TiledMap map;
@@ -23,8 +24,8 @@ public class Map {
 	private MapLayer objectLayer;
 	private TmxMapLoader loader;
 	private OrthogonalTiledMapRenderer renderer;
-	private List<Entity> entities;
-	private Player player;
+	private List<DataObject> dataObjects;
+	private PlayerData player;
 
 	public Map(String map) {
 		init(map);
@@ -34,7 +35,7 @@ public class Map {
 		loader = new TmxMapLoader();
 		map = loader.load(mapUrl);
 		renderer = new OrthogonalTiledMapRenderer(map, GameConfig.MAP_SCALE);
-		entities = new ArrayList<Entity>();
+		dataObjects = new ArrayList<DataObject>();
 
 		tileLayer = (TiledMapTileLayer) map.getLayers().get(0);
 		objectLayer = map.getLayers().get("Object Layer 1");
@@ -49,7 +50,7 @@ public class Map {
 		System.out.println("Objects Counts : " + objects.getCount());
 
 		for (MapObject obj : objects) {
-			entities.add(processMapObjects(obj));
+			dataObjects.add(processMapObjects(obj));
 		}
 
 	}
@@ -63,15 +64,15 @@ public class Map {
 		map.dispose();
 	}
 
-	public List<Entity> getEntities() {
-		return entities;
+	public List<DataObject> getObjects() {
+		return dataObjects;
 	}
 
-	public Player getPlayer() {
+	public PlayerData getPlayer() {
 		return player;
 	}
 
-	private Entity processMapObjects(MapObject obj) {
+	private DataObject processMapObjects(MapObject obj) {
 		float x = Float.parseFloat(obj.getProperties().get(MapConstants.X_KEY).toString()) * GameConfig.MAP_SCALE;
 		float y = Float.parseFloat(obj.getProperties().get(MapConstants.Y_KEY).toString()) * GameConfig.MAP_SCALE;
 		float width = Float.parseFloat(obj.getProperties().get(MapConstants.WIDTH_KEY).toString())
@@ -81,7 +82,7 @@ public class Map {
 
 		if (obj.getProperties().get(MapConstants.TYPE_KEY) == null) {
 			System.out.println("Object Type is null");
-			return new Cannon(x, y, width, height);
+			return new CannonData(x, y, width, height);
 		}
 
 		String type = obj.getProperties().get(MapConstants.TYPE_KEY).toString();
@@ -95,17 +96,17 @@ public class Map {
 
 		switch (type) {
 		case MapConstants.PLAYER:
-			player = new Player(x, y, width, height);
+			player = new PlayerData(x, y, width, height);
 			return player;
 		case MapConstants.CANNON:
-			Cannon cannon = new Cannon(x, y, width, height);
+			CannonData cannon = new CannonData(x, y, width, height);
 			return cannon;
 		case MapConstants.CHAOS:
-			Chaos chaos = new Chaos(x, y, width, height);
+			ChaosData chaos = new ChaosData(x, y, width, height);
 			return chaos;
 		}
 
-		return new Cannon(x, y, width, height);
+		return new CannonData(x, y, width, height);
 	}
 
 }

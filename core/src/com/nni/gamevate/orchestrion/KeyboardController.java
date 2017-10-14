@@ -8,6 +8,7 @@ public class KeyboardController implements InputProcessor{
     public boolean right;
     public boolean up;
 	public boolean tap;
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
