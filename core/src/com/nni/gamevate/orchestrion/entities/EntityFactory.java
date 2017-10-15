@@ -36,23 +36,20 @@ public class EntityFactory {
 		TransformComponent transform = new TransformComponent();
 		SizeComponent size = new SizeComponent();
 		TypeComponent type = new TypeComponent();
-		MovementComponent movement = new MovementComponent();
 		StateComponent userState = new StateComponent();
 
-		texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
+		//texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
 		b2dbody.body = bodyFactory.makeCirclePolyBody(10,10,1, BodyFactory.STONE, BodyType.DynamicBody,true);
 		size.width = playerData.getWidth();
 		size.height = playerData.getHeight();
 		transform.pos.set(playerData.getxPos(), playerData.getyPos(), 0);
-		movement.velocity.set(5.0f, 0);
 		userState.set(StateComponent.STATE_NORMAL);
 		type.type = TypeComponent.PLAYER;
-		b2dbody.body.setUserData(this);
+		b2dbody.body.setUserData(entity);
 
-		entity.add(texture);
+	//	entity.add(texture);
 		entity.add(transform);
 		entity.add(size);
-		entity.add(movement);
 		entity.add(userState);
 		entity.add(player);
 		entity.add(b2dbody);
@@ -64,11 +61,13 @@ public class EntityFactory {
 	}
 	
 	
-	public void createPlatform(float x, float y){
+	public Entity createPlatform(float x, float y){
 		Entity entity = engine.createEntity();
 		
 		B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
 		TypeComponent type = engine.createComponent(TypeComponent.class);
+		
+		b2dbody.body = bodyFactory.makeBoxPolyBody(x, y, 3, 0.2f, BodyFactory.STONE, BodyType.StaticBody);
 		type.type = TypeComponent.SCENERY;
 		b2dbody.body.setUserData(entity);
 		
@@ -76,25 +75,55 @@ public class EntityFactory {
 		//entity.add(texture);
 		entity.add(type);
 		
-		engine.addEntity(entity);
+		return entity;
 		
 	}
 	
-	public void createFloor(){
+	public Entity createFloor(){
 		Entity entity = engine.createEntity();
 		B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
-		b2dbody.body = bodyFactory.makeBoxPolyBody(0, 0, 100, 0.2f, BodyFactory.STONE, BodyType.StaticBody);
-		TextureComponent texture = engine.createComponent(TextureComponent.class);
-		texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
 		TypeComponent type = engine.createComponent(TypeComponent.class);
-		type.type = TypeComponent.SCENERY;
 		
+		//TextureComponent texture = engine.createComponent(TextureComponent.class);
+		//texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
+		
+		b2dbody.body = bodyFactory.makeBoxPolyBody(0, 0, 100, 0.2f, BodyFactory.STONE, BodyType.StaticBody);
+		type.type = TypeComponent.SCENERY;
 		b2dbody.body.setUserData(entity);
 	 
 		entity.add(b2dbody);
-		entity.add(texture);
+		//entity.add(texture);
 		entity.add(type);
 		
-		engine.addEntity(entity);
+		return entity;
 	}
+	
+	public Entity createBeat(float x, float y){
+		
+		Entity entity = engine.createEntity();
+		B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
+		TypeComponent type = engine.createComponent(TypeComponent.class); 
+		
+		b2dbody.body = bodyFactory.makeCirclePolyBody(x, y, .75f, BodyFactory.RUBBER, BodyType.StaticBody, true);
+		type.type = TypeComponent.BEAT;
+		b2dbody.body.setUserData(entity);
+		
+		entity.add(b2dbody);
+		entity.add(type);
+		
+		
+		return entity;
+	}
+	
+	public Entity createEnemy(float x, float y){
+		
+		return new Entity();
+	}
+	
+	public Entity createChoas(float x, float y){
+		
+		return new Entity();
+	}
+
+
 }

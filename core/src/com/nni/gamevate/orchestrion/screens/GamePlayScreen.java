@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.nni.gamevate.orchestrion.KeyboardController;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.controllers.PlayController;
 import com.nni.gamevate.orchestrion.maps.Map;
@@ -24,7 +25,7 @@ public class GamePlayScreen extends ScreenAdapter {
 	
 	private SpriteBatch batch;
 	private AssetManager assetManager;
-	private WorldInputHandler inputHandler;
+	private KeyboardController inputHandler;
 	
 	public GamePlayScreen(Orchestrion orchestrion, Map level){
 		this.orchestrion = orchestrion;
@@ -40,19 +41,18 @@ public class GamePlayScreen extends ScreenAdapter {
 	@Override
 	public void show() {
 		Gdx.app.log(TAG, "Strarting World Screeen");
-		inputHandler = new WorldInputHandler();		
-		renderer = new PlayRenderer(controller);
+		inputHandler = new KeyboardController();		
+		renderer = new PlayRenderer(controller, inputHandler);
 		Gdx.input.setInputProcessor(inputHandler);
 	}
 	
 	@Override
 	public void render(float delta) {			
 		controller.update(delta);
-		inputHandler.update(delta);
 
 		renderer.render(delta);
 		
-		if((gameOver || victory) && inputHandler.jump == true){
+		if((gameOver || victory) ){
 			orchestrion.setScreen(new MapSelectScreen(orchestrion));
 		}
 	}
