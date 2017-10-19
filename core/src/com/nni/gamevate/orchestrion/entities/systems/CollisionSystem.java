@@ -34,7 +34,7 @@ public class CollisionSystem extends IteratingSystem {
 		if(thisType.type == TypeComponent.PLAYER){
 			playerCollision(cc, collidedEntity);
 		}else if(thisType.type == TypeComponent.BEAT){
-			
+			//beatCollision(cc, collidedEntity);
 		} else if(thisType.type == TypeComponent.ENEMY){
 			
 		} else if(thisType.type == TypeComponent.CHAOS){
