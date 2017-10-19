@@ -32,7 +32,6 @@ public class PlayerControlSystem extends IteratingSystem {
 		StateComponent state = sm.get(entity);
 
 		if (b2body.body.getLinearVelocity().y > 0) {
-			System.out.println("Is Tap True : " + controller.tap);
 			state.set(StateComponent.STATE_FALLING);
 		}
 
@@ -47,14 +46,12 @@ public class PlayerControlSystem extends IteratingSystem {
 		}
 
 		if (state.get() == StateComponent.STATE_NORMAL || state.get() == StateComponent.STATE_MOVING) {
-			b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 5f, 0.2f),
+			b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 4.0f, 0.4f),
 					b2body.body.getLinearVelocity().y);
 		}
 
 		if (controller.tap
 				&& (state.get() == StateComponent.STATE_NORMAL || state.get() == StateComponent.STATE_MOVING)) {
-			// b2body.body.applyForceToCenter(0, 3000,true);
-			System.out.println("Player Jumped");
 			b2body.body.applyLinearImpulse(0, 75f, b2body.body.getWorldCenter().x, b2body.body.getWorldCenter().y,
 					true);
 			state.set(StateComponent.STATE_JUMPING);

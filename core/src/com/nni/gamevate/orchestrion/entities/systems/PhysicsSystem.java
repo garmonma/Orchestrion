@@ -1,6 +1,7 @@
 package com.nni.gamevate.orchestrion.entities.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
@@ -19,13 +20,13 @@ public class PhysicsSystem extends IteratingSystem {
  
     private World world;
     private Array<Entity> bodiesQueue;
-    private PooledEngine engine;
+    private Engine engine;
  
     private ComponentMapper<B2dBodyComponent> bm = ComponentMapper.getFor(B2dBodyComponent.class);
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
  
     @SuppressWarnings("unchecked")
-	public PhysicsSystem(World world, PooledEngine engine) {
+	public PhysicsSystem(World world, Engine engine) {
         super(Family.all(B2dBodyComponent.class, TransformComponent.class).get());
         this.world = world;
         this.engine = engine;
