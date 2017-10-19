@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.nni.gamevate.orchestrion.entities.components.B2dBodyComponent;
 import com.nni.gamevate.orchestrion.entities.components.CollisionComponent;
 import com.nni.gamevate.orchestrion.entities.components.PlayerComponent;
 import com.nni.gamevate.orchestrion.entities.components.TypeComponent;
@@ -30,20 +29,20 @@ public class CollisionSystem extends IteratingSystem {
 		Entity collidedEntity = cc.collisionEntity;
 
 		TypeComponent thisType = entity.getComponent(TypeComponent.class);
-		
-		if(thisType.type == TypeComponent.PLAYER){
+
+		if (thisType.type == TypeComponent.PLAYER) {
 			playerCollision(cc, collidedEntity);
-		}else if(thisType.type == TypeComponent.BEAT){
-			//beatCollision(cc, collidedEntity);
-		} else if(thisType.type == TypeComponent.ENEMY){
-			
-		} else if(thisType.type == TypeComponent.CHAOS){
-			
+		} else if (thisType.type == TypeComponent.BEAT) {
+
+		} else if (thisType.type == TypeComponent.ENEMY) {
+
+		} else if (thisType.type == TypeComponent.CHAOS) {
+
 		}
-		
+
 	}
-	
-	private void playerCollision(CollisionComponent cc, Entity collidedEntity){
+
+	private void playerCollision(CollisionComponent cc, Entity collidedEntity) {
 		if (collidedEntity != null) {
 			TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
 			if (type != null) {
@@ -56,11 +55,11 @@ public class CollisionSystem extends IteratingSystem {
 					break;
 				case TypeComponent.OTHER:
 					System.out.println("player hit other");
-					break; 
+					break;
 				case TypeComponent.BEAT:
-					System.out.println("Player Hit BEAT");	
+					System.out.println("Player hit a beat!");
 				}
-				
+
 				cc.collisionEntity = null; // collision handled reset component
 			}
 		}

@@ -1,7 +1,7 @@
 package com.nni.gamevate.orchestrion.renderers;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.PooledEngine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -31,7 +31,7 @@ public class PlayRenderer implements Renderer {
 	
 	private PlayController controller;
 	
-	private PooledEngine engine;
+	private Engine engine;
 	private MovementSystem movementSystem;
 	private RenderSystem renderSystem;
 	private AnimationSystem animationSystem;
@@ -68,7 +68,7 @@ public class PlayRenderer implements Renderer {
 		viewport.update((int)GameConfig.WORLD_WIDTH, (int)GameConfig.WORLD_HEIGHT, false);
 		camera.update();
 		
-		engine = new PooledEngine();
+		engine = new Engine();
 		movementSystem = new MovementSystem();
 		renderSystem = new RenderSystem(camera);
 		animationSystem = new AnimationSystem();
@@ -86,7 +86,7 @@ public class PlayRenderer implements Renderer {
 		engine.addSystem(playerControlSystem);
 		
 		bodyFactory = BodyFactory.getInstance(world);
-		entityFactory = new EntityFactory((PooledEngine)engine, bodyFactory);
+		entityFactory = new EntityFactory(bodyFactory);
 		
 		Entity player = entityFactory.createPlayer(controller.getPlayer());
 		engine.addEntity(player);
@@ -107,12 +107,6 @@ public class PlayRenderer implements Renderer {
 		Entity beat = entityFactory.createBeat(50,  10);
 		engine.addEntity(beat);
 		
-		
-//		for(Entity e: controller.getEntities()){
-//			engine.addEntity(e);
-//			
-//		}
-		
 		renderSystem.addedToEngine(engine);
 		
 		Music music = Orchestrion.assetManager.get(AssetDescriptors.FUR_ELISE);
@@ -122,7 +116,7 @@ public class PlayRenderer implements Renderer {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		updateCamera();
