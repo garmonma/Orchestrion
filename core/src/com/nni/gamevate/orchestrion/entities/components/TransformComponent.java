@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public class TransformComponent implements Component {
 	public final Vector3 pos = new Vector3();
-	public final Vector3 scale = new Vector3(1.0f, 1.0f, 0.0f);
+	public final Vector2 scale = new Vector2(1.0f, 1.0f);
 	public float rotation = 0.0f;
+	public boolean isHidden = false;
 }

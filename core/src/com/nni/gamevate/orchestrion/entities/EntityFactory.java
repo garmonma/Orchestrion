@@ -5,9 +5,11 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.nni.gamevate.orchestrion.BodyFactory;
+import com.nni.gamevate.orchestrion.entities.components.AnimationComponent;
 import com.nni.gamevate.orchestrion.entities.components.B2dBodyComponent;
 import com.nni.gamevate.orchestrion.entities.components.BeatComponent;
 import com.nni.gamevate.orchestrion.entities.components.CollisionComponent;
@@ -19,6 +21,7 @@ import com.nni.gamevate.orchestrion.entities.components.TextureComponent;
 import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
 import com.nni.gamevate.orchestrion.entities.components.TypeComponent;
 import com.nni.gamevate.orchestrion.entities.objects.Beat;
+import com.nni.gamevate.orchestrion.utils.Logger;
 
 public class EntityFactory {
 	private BodyFactory bodyFactory;
@@ -36,8 +39,20 @@ public class EntityFactory {
 		SizeComponent size = new SizeComponent();
 		TypeComponent type = new TypeComponent();
 		StateComponent userState = new StateComponent();
+		AnimationComponent animCom = new AnimationComponent();
+		TextureComponent texCom = new TextureComponent();
+		texCom.region = playerData.getTextureRegion();
+		
+		
+		Animation tempiRun = playerData.getRunAnimation();
+		
+		
+//		animCom.animations.put(StateComponent.STATE_NORMAL, tempiRun);
+//		animCom.animations.put(StateComponent.STATE_JUMPING, tempiRun);
+//		animCom.animations.put(StateComponent.STATE_FALLING, tempiRun);
+//		animCom.animations.put(StateComponent.STATE_HIT, tempiRun);
+		animCom.animations.put(StateComponent.STATE_MOVING, tempiRun);
 
-		//texture.region = new TextureRegion(new Texture(Gdx.files.internal("caveman.png")));
 		b2dbody.body = bodyFactory.makeCirclePolyBody(10,10,1, BodyFactory.STONE, BodyType.DynamicBody,true);
 		size.width = playerData.getWidth();
 		size.height = playerData.getHeight();
@@ -47,12 +62,14 @@ public class EntityFactory {
 		b2dbody.body.setUserData(entity);
 
 		entity.add(transform);
+		entity.add(animCom);
 		entity.add(size);
 		entity.add(userState);
 		entity.add(player);
 		entity.add(b2dbody);
 		entity.add(collision);
 		entity.add(type);
+		entity.add(texCom);
 		
 		return entity;
 		

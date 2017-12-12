@@ -1,11 +1,17 @@
 package com.nni.gamevate.orchestrion.entities;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 public class PlayerData extends DataObject{
 	
 	private float xPos;
 	private float yPos;
 	private float width;
 	private float height;
+	
+	private TextureRegion texReg;
+	private Animation runAnimation;
 
 	public PlayerData(float x, float y, float width, float height) {
 		
@@ -15,6 +21,26 @@ public class PlayerData extends DataObject{
 		this.height = height;
 		
 		
+	}
+	
+	public void setTextureRegion(TextureRegion tex){
+	    texReg = tex;
+	}
+	
+	public TextureRegion getTextureRegion(){
+		return texReg;
+	}
+
+	
+	public void setRunAnimation(Animation anim){
+	    runAnimation = anim;
+	}
+	
+	public Animation getRunAnimation(){
+	  //  if(runAnimation != null){
+		return runAnimation;
+	//    }
+	    
 	}
 
 	public float getxPos() {

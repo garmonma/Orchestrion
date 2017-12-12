@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -25,7 +26,7 @@ import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
 import com.nni.gamevate.orchestrion.entities.systems.PhysicsDebugSystem;
 import com.nni.gamevate.orchestrion.entities.systems.PhysicsSystem;
 import com.nni.gamevate.orchestrion.entities.systems.PlayerControlSystem;
-import com.nni.gamevate.orchestrion.entities.systems.RenderSystem;
+import com.nni.gamevate.orchestrion.entities.systems.RenderingSystem;
 
 public class PlayRenderer implements Renderer {
 	
@@ -33,7 +34,7 @@ public class PlayRenderer implements Renderer {
 	
 	private Engine engine;
 	private MovementSystem movementSystem;
-	private RenderSystem renderSystem;
+	private RenderingSystem renderSystem;
 	private AnimationSystem animationSystem;
 	private CollisionSystem collisionSystem;
 	private PhysicsDebugSystem pDebugSystem;
@@ -46,6 +47,8 @@ public class PlayRenderer implements Renderer {
 	private KeyboardController kc;
 	private EntityFactory entityFactory;
 	private BodyFactory bodyFactory;
+	
+	private SpriteBatch batch;
 	
 	public  PlayRenderer(PlayController controller, KeyboardController kc) {
 		this.controller = controller;
@@ -60,6 +63,7 @@ public class PlayRenderer implements Renderer {
 	public void init() {
 		camera = new OrthographicCamera();
 		viewport = new ExtendViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
+		batch = new SpriteBatch();
 		world = new World(new Vector2(0, -10f), true);
 		world.setContactListener(new B2dContactListener());
 		
@@ -70,7 +74,7 @@ public class PlayRenderer implements Renderer {
 		
 		engine = new Engine();
 		movementSystem = new MovementSystem();
-		renderSystem = new RenderSystem(camera);
+		renderSystem = new RenderingSystem(batch);
 		animationSystem = new AnimationSystem();
 		collisionSystem = new CollisionSystem();
 		pDebugSystem = new PhysicsDebugSystem(world, camera);
