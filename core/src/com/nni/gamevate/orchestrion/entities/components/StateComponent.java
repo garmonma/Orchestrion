@@ -1,9 +1,10 @@
 package com.nni.gamevate.orchestrion.entities.components;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.utils.Pool.Poolable;
 import com.nni.gamevate.orchestrion.entities.UserState;
 
-public class StateComponent implements Component {
+public class StateComponent implements Component, Poolable {
 	public static final int STATE_NORMAL = 0;
 	public static final int STATE_JUMPING = 1;
 	public static final int STATE_FALLING = 2;
@@ -21,5 +22,11 @@ public class StateComponent implements Component {
 
 	public int get() {
 		return state;
+	}
+
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+		
 	}
 }
