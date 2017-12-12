@@ -3,9 +3,9 @@ package com.nni.gamevate.orchestrion.assets;
 public class AssetPaths {
     
   //Texture Atlas
-  	public static final String TEMPI = "sprites/tempiRun.atlas";
+  	public static final String TEMPI_RUN_ATLAS = "sprites/tempi_run.atlas";
   	
-  	public static final String TEMPI_RUN = "sprites/tempiRun.png";
+  	public static final String TEMPI_RUN = "sprites/tempi_run.png";
 	
 	// Misc
 	public static final String SPLASH_BACKGROUND = "backgrounds/tempSplashLogo.png";

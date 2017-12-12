@@ -3,7 +3,6 @@ package com.nni.gamevate.orchestrion.maps;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -13,10 +12,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.nni.gamevate.orchestrion.GameConfig;
-import com.nni.gamevate.orchestrion.entities.ChaosData;
-import com.nni.gamevate.orchestrion.entities.DataObject;
-import com.nni.gamevate.orchestrion.entities.PlayerData;
-import com.nni.gamevate.orchestrion.entities.objects.CannonData;
+import com.nni.gamevate.orchestrion.entitysystem.objects.ChaosData;
+import com.nni.gamevate.orchestrion.entitysystem.objects.DataObject;
+import com.nni.gamevate.orchestrion.entitysystem.objects.PlayerData;
+import com.nni.gamevate.orchestrion.entitysystem.objects.CannonData;
 
 public class Map {
 	private TiledMap map;

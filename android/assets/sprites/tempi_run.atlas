@@ -1,0 +1,68 @@
+
+tempi_run.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tempi
+  rotate: false
+  xy: 1, 265
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 1
+tempi
+  rotate: false
+  xy: 1, 133
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 2
+tempi
+  rotate: false
+  xy: 116, 265
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 3
+tempi
+  rotate: false
+  xy: 1, 1
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 4
+tempi
+  rotate: false
+  xy: 116, 133
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 5
+tempi
+  rotate: false
+  xy: 231, 265
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 6
+tempi
+  rotate: false
+  xy: 116, 1
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 7
+tempi
+  rotate: false
+  xy: 231, 133
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 8
+tempi
+  rotate: false
+  xy: 346, 265
+  size: 113, 130
+  orig: 113, 130
+  offset: 0, 0
+  index: 9

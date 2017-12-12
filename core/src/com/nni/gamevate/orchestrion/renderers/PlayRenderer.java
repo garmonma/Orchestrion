@@ -19,14 +19,14 @@ import com.nni.gamevate.orchestrion.KeyboardController;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.controllers.PlayController;
-import com.nni.gamevate.orchestrion.entities.EntityFactory;
-import com.nni.gamevate.orchestrion.entities.systems.AnimationSystem;
-import com.nni.gamevate.orchestrion.entities.systems.CollisionSystem;
-import com.nni.gamevate.orchestrion.entities.systems.MovementSystem;
-import com.nni.gamevate.orchestrion.entities.systems.PhysicsDebugSystem;
-import com.nni.gamevate.orchestrion.entities.systems.PhysicsSystem;
-import com.nni.gamevate.orchestrion.entities.systems.PlayerControlSystem;
-import com.nni.gamevate.orchestrion.entities.systems.RenderingSystem;
+import com.nni.gamevate.orchestrion.entitysystem.EntityFactory;
+import com.nni.gamevate.orchestrion.entitysystem.systems.AnimationSystem;
+import com.nni.gamevate.orchestrion.entitysystem.systems.CollisionSystem;
+import com.nni.gamevate.orchestrion.entitysystem.systems.MovementSystem;
+import com.nni.gamevate.orchestrion.entitysystem.systems.PhysicsDebugSystem;
+import com.nni.gamevate.orchestrion.entitysystem.systems.PhysicsSystem;
+import com.nni.gamevate.orchestrion.entitysystem.systems.PlayerControlSystem;
+import com.nni.gamevate.orchestrion.entitysystem.systems.RenderingSystem;
 
 public class PlayRenderer implements Renderer {
 	

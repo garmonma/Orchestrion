@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
-import com.nni.gamevate.orchestrion.entities.components.TransformComponent;
+import com.nni.gamevate.orchestrion.entitysystem.components.TransformComponent;
 
 public class ZComparator implements Comparator<Entity> {
     private ComponentMapper<TransformComponent> transformM;

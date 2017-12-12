@@ -10,7 +10,7 @@ public class AssetDescriptors {
     
     		//Texture Atlas
   	public static final AssetDescriptor<TextureAtlas> TEMPI =
-              new AssetDescriptor<TextureAtlas>(AssetPaths.TEMPI, TextureAtlas.class);
+              new AssetDescriptor<TextureAtlas>(AssetPaths.TEMPI_RUN_ATLAS, TextureAtlas.class);
 
 	public static final AssetDescriptor<Texture> SPLASH_BACKGROUND =
             new AssetDescriptor<Texture>(AssetPaths.SPLASH_BACKGROUND, Texture.class);
@@ -23,7 +23,4 @@ public class AssetDescriptors {
 	//CHARACTERS
 	public static final AssetDescriptor<Texture> TEMPI_RUN = 
 		new AssetDescriptor<Texture>(AssetPaths.TEMPI_RUN, Texture.class);
-
-	
-
 }
