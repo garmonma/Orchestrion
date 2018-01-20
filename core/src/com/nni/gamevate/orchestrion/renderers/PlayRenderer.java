@@ -1,8 +1,7 @@
 package com.nni.gamevate.orchestrion.renderers;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -14,12 +13,12 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.nni.gamevate.orchestrion.B2dContactListener;
 import com.nni.gamevate.orchestrion.BodyFactory;
+import com.nni.gamevate.orchestrion.EntityFactory;
 import com.nni.gamevate.orchestrion.GameConfig;
 import com.nni.gamevate.orchestrion.KeyboardController;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.controllers.PlayController;
-import com.nni.gamevate.orchestrion.entitysystem.EntityFactory;
 import com.nni.gamevate.orchestrion.entitysystem.systems.AnimationSystem;
 import com.nni.gamevate.orchestrion.entitysystem.systems.CollisionSystem;
 import com.nni.gamevate.orchestrion.entitysystem.systems.MovementSystem;
@@ -32,7 +31,7 @@ public class PlayRenderer implements Renderer {
 	
 	private PlayController controller;
 	
-	private Engine engine;
+	private PooledEngine engine;
 	private MovementSystem movementSystem;
 	private RenderingSystem renderSystem;
 	private AnimationSystem animationSystem;
@@ -43,6 +42,7 @@ public class PlayRenderer implements Renderer {
 	
 	private OrthographicCamera camera;
 	private Viewport viewport;
+	
 	private World world;
 	private KeyboardController kc;
 	private EntityFactory entityFactory;
@@ -61,20 +61,17 @@ public class PlayRenderer implements Renderer {
 
 	@Override
 	public void init() {
-		camera = new OrthographicCamera();
-		viewport = new ExtendViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
 		batch = new SpriteBatch();
 		world = new World(new Vector2(0, -10f), true);
 		world.setContactListener(new B2dContactListener());
 		
-		viewport.getCamera().position.set(0f, 2f,0);
-		viewport.getCamera().update();
-		viewport.update((int)GameConfig.WORLD_WIDTH, (int)GameConfig.WORLD_HEIGHT, false);
-		camera.update();
-		
-		engine = new Engine();
+		engine = new PooledEngine();
 		movementSystem = new MovementSystem();
+		
 		renderSystem = new RenderingSystem(batch);
+		camera = renderSystem.getCamera();
+		viewport = renderSystem.getViewport();
+		
 		animationSystem = new AnimationSystem();
 		collisionSystem = new CollisionSystem();
 		pDebugSystem = new PhysicsDebugSystem(world, camera);
@@ -126,8 +123,6 @@ public class PlayRenderer implements Renderer {
 		updateCamera();
 		controller.getMap().render(camera);
 		engine.update(delta);	
-		
-		
 	}
 
 	@Override

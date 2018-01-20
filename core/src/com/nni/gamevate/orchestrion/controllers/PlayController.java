@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.nni.gamevate.orchestrion.CharacterConstants;
+import com.nni.gamevate.orchestrion.GameData;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.entitysystem.objects.DataObject;
@@ -25,31 +27,59 @@ public class PlayController extends AbstractController {
 
 	private List<DataObject> dataObjects = new ArrayList<DataObject>();
 
-	public PlayController(Map map) {
-		this.map = map;
+	public PlayController(GameData gameData) {
+		this.map = gameData.map;
+		dataObjects = map.getObjects();
+		this.playerData = gameData.player;
 		init();
 	}
 
 	@Override
 	protected void init() {
 		Logger.log("init World");
+		
+		switch(playerData.getCharacter()){
+		case CharacterConstants.RY:
+			initRy();
+			break;
+		case CharacterConstants.TEMPI:
+			initTempi();
+			break;
+		}
+	}
+	
+	private void initRy(){
+		TextureRegion texRy = new TextureRegion(Orchestrion.assetManager.get(AssetDescriptors.RY).findRegion("ryRun"));
 
-		dataObjects = map.getObjects();
-		playerData = map.getPlayer();
+		Animation ryRunAnimation = new Animation(0.1f,
+				Orchestrion.assetManager.get(AssetDescriptors.RY).findRegions("ryRun"), PlayMode.LOOP);
 		
-		TextureRegion tex = new TextureRegion(Orchestrion.assetManager.get(AssetDescriptors.TEMPI_RUN));
+		if (ryRunAnimation != null)
+			Logger.log("Run Annimation : " + ryRunAnimation);
 		
-		Animation runAnimation = new Animation(0.1f, 
-			Orchestrion.assetManager.get(AssetDescriptors.TEMPI).findRegions("tempi"), PlayMode.LOOP );
+		if (texRy != null)
+			Logger.log("Texture Region : " + texRy);
 		
-		if(runAnimation != null)
-		Logger.log("Run Annimation : " + runAnimation );
+		playerData.setRunAnimation(ryRunAnimation);
+		playerData.setTextureRegion(texRy);
 		
-		if(tex != null)
-		Logger.log("Texture Region : " + tex);
+	}
+	
+	private void initTempi(){
+		TextureRegion tex = new TextureRegion(Orchestrion.assetManager.get(AssetDescriptors.TEMPI).findRegion("tempiRun"));
 		
-		playerData.setRunAnimation(runAnimation);
+		Animation tempiRunAnimation = new Animation(0.1f,
+				Orchestrion.assetManager.get(AssetDescriptors.TEMPI).findRegions("tempiRun"), PlayMode.LOOP);
+		
+		if (tempiRunAnimation != null)
+			Logger.log("Run Annimation Tempi : " + tempiRunAnimation);
+		
+		if (tex != null)
+			Logger.log("Texture Region : " + tex);
+		
+		playerData.setRunAnimation(tempiRunAnimation);
 		playerData.setTextureRegion(tex);
+		
 	}
 
 	@Override

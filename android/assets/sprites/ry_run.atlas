@@ -1,0 +1,61 @@
+
+ry_run.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ryRun
+  rotate: false
+  xy: 1, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 1
+ryRun
+  rotate: false
+  xy: 117, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 2
+ryRun
+  rotate: false
+  xy: 233, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 3
+ryRun
+  rotate: false
+  xy: 349, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 4
+ryRun
+  rotate: false
+  xy: 465, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 5
+ryRun
+  rotate: false
+  xy: 581, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 6
+ryRun
+  rotate: false
+  xy: 697, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 7
+ryRun
+  rotate: false
+  xy: 813, 1
+  size: 114, 150
+  orig: 114, 150
+  offset: 0, 0
+  index: 8

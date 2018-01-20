@@ -35,7 +35,7 @@ public class Map {
 		map = loader.load(mapUrl);
 		renderer = new OrthogonalTiledMapRenderer(map, GameConfig.MAP_SCALE);
 		dataObjects = new ArrayList<DataObject>();
-
+		
 		tileLayer = (TiledMapTileLayer) map.getLayers().get(0);
 		objectLayer = map.getLayers().get("Object Layer 1");
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.nni.gamevate.orchestrion.GameData;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.assets.AssetDescriptors;
 import com.nni.gamevate.orchestrion.controllers.MapSelectController;
@@ -22,6 +23,10 @@ public class MapSelectScreen extends ScreenAdapter {
 	private AssetManager assetManager;
 	
 	private Music backgroundMusic;
+	
+	public boolean mapSelected = true;
+	
+	public String selectedMap = MapConstants.TEST_MAP;
 		
 	public MapSelectScreen(Orchestrion orchestrion) {
 		this.orchestrion = orchestrion;
@@ -44,7 +49,14 @@ public class MapSelectScreen extends ScreenAdapter {
 		controller.update(delta);
 		renderer.render(delta);
 		
-		orchestrion.setScreen(new GamePlayScreen(orchestrion, new Map(MapConstants.TEST_MAP)));
+		if(mapSelected){
+			GameData gameData = new GameData();
+			gameData.map = new Map(selectedMap);
+			gameData.player = gameData.map.getPlayer();
+			orchestrion.setScreen(
+					new CharacterSelectScreen(orchestrion, gameData));
+		}
+		
 	}
 	
 	@Override

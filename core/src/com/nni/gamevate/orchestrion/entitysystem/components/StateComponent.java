@@ -25,7 +25,9 @@ public class StateComponent implements Component, Poolable {
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
+		state = 0;
+	    time = 0.0f;
+	    isLooping = false;
 		
 	}
 }

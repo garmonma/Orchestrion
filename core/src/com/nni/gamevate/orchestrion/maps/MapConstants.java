@@ -2,7 +2,6 @@ package com.nni.gamevate.orchestrion.maps;
 
 public class MapConstants {
     
-    
     // Object Names
     public static final String PLAYER = "PlayerEntity";
     public static final String CANNON = "cannon";
@@ -19,6 +18,7 @@ public class MapConstants {
 
     // Maps Urls
     public static final String TEST_MAP = "maps/testSmall.tmx";
+    public static final String STAGE_ONE_MAP = "maps/stageOneMap.tmx";
 
     private MapConstants() {
 

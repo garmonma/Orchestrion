@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.nni.gamevate.orchestrion.GameData;
 import com.nni.gamevate.orchestrion.KeyboardController;
 import com.nni.gamevate.orchestrion.Orchestrion;
 import com.nni.gamevate.orchestrion.controllers.PlayController;
-import com.nni.gamevate.orchestrion.maps.Map;
 import com.nni.gamevate.orchestrion.renderers.PlayRenderer;
-import com.nni.gamevate.orchestrion.utils.WorldInputHandler;
 
 public class GamePlayScreen extends ScreenAdapter {
 	
@@ -27,7 +26,7 @@ public class GamePlayScreen extends ScreenAdapter {
 	private AssetManager assetManager;
 	private KeyboardController inputHandler;
 	
-	public GamePlayScreen(Orchestrion orchestrion, Map level){
+	public GamePlayScreen(Orchestrion orchestrion, GameData gameData){
 		this.orchestrion = orchestrion;
 		batch = Orchestrion.spriteBatch;
 		assetManager = Orchestrion.assetManager;
@@ -35,7 +34,7 @@ public class GamePlayScreen extends ScreenAdapter {
 		gameOver = false;
 		victory = false;
 		
-		controller = new PlayController(level);
+		controller = new PlayController(gameData);
 	}
 	
 	@Override

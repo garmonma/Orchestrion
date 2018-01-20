@@ -22,8 +22,5 @@ public class MovementSystem extends IteratingSystem {
 		
 		transform.pos.x += movement.velocity.x * deltaTime;
 		transform.pos.y += movement.velocity.y * deltaTime;
-
-	
-		
 	}
 }

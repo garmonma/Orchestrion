@@ -12,6 +12,9 @@ public class PlayerData extends DataObject {
 	
 	private TextureRegion texReg;
 	private Animation runAnimation;
+	private Animation jumpAnimation;
+	
+	private int character;
 
 	public PlayerData(float x, float y, float width, float height) {
 		
@@ -19,6 +22,14 @@ public class PlayerData extends DataObject {
 		this.yPos = y;
 		this.width = width;
 		this.height = height;
+	}
+	
+	public int getCharacter(){
+		return this.character;
+	}
+	
+	public void setCharacter(int character){
+		this.character = character;
 	}
 	
 	public void setTextureRegion(TextureRegion tex){
@@ -35,9 +46,7 @@ public class PlayerData extends DataObject {
 	}
 	
 	public Animation getRunAnimation(){
-	  //  if(runAnimation != null){
 		return runAnimation;
-	//    }
 	    
 	}
 
@@ -72,7 +81,4 @@ public class PlayerData extends DataObject {
 	public void setHeight(float height) {
 		this.height = height;
 	}
-	
-	
-
 }

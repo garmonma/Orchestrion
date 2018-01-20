@@ -10,13 +10,16 @@ import com.nni.gamevate.orchestrion.entitysystem.components.TextureComponent;
 
 public class AnimationSystem extends IteratingSystem {
 
-    private ComponentMapper<TextureComponent> tm =  ComponentMapper.getFor(TextureComponent.class);
-    private ComponentMapper<AnimationComponent> am = ComponentMapper.getFor(AnimationComponent.class);
-    private ComponentMapper<StateComponent> sm = ComponentMapper.getFor(StateComponent.class);
+    ComponentMapper<TextureComponent> tm;
+    ComponentMapper<AnimationComponent> am;
+    ComponentMapper<StateComponent> sm;
 
     public AnimationSystem(){
         super(Family.all(TextureComponent.class,  AnimationComponent.class, StateComponent.class).get());
  
+        tm = ComponentMapper.getFor(TextureComponent.class);
+        am = ComponentMapper.getFor(AnimationComponent.class);
+        sm = ComponentMapper.getFor(StateComponent.class);
     }
 
     @Override
