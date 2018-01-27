@@ -30,9 +30,11 @@ public class PlayerControlSystem extends IteratingSystem {
 	protected void processEntity(Entity entity, float deltaTime) {
 		B2dBodyComponent b2body = bodm.get(entity);
 		StateComponent state = sm.get(entity);
-
-		if (b2body.body.getLinearVelocity().y > 0) {
+		//System.out.println("Falling y : " + b2body.body.getLinearVelocity().y);
+		
+		if (b2body.body.getLinearVelocity().y < 0) {
 			state.set(StateComponent.STATE_FALLING);
+			
 		}
 
 		if (b2body.body.getLinearVelocity().y == 0) {
@@ -40,7 +42,7 @@ public class PlayerControlSystem extends IteratingSystem {
 			if (state.get() == StateComponent.STATE_FALLING) {
 				state.set(StateComponent.STATE_NORMAL);
 			}
-			if (b2body.body.getLinearVelocity().x != 0) {
+			if (b2body.body.getLinearVelocity().x > 0) {
 				state.set(StateComponent.STATE_MOVING);
 			}
 		}

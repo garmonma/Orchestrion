@@ -33,17 +33,18 @@ public class EntityFactory {
 		StateComponent userState = new StateComponent();
 		AnimationComponent animCom = new AnimationComponent();
 		TextureComponent texCom = new TextureComponent();
-		texCom.region = playerData.getTextureRegion();
+		//texCom.region = playerData.getTextureRegion();
 		
 		
-		Animation tempiRun = playerData.getRunAnimation();
+		Animation runAnimation = playerData.getRunAnimation();
+	//	runAnimation.
 		
 		
-//		animCom.animations.put(StateComponent.STATE_NORMAL, tempiRun);
-//		animCom.animations.put(StateComponent.STATE_JUMPING, tempiRun);
-//		animCom.animations.put(StateComponent.STATE_FALLING, tempiRun);
+//		animCom.animations.put(StateComponent.STATE_NORMAL, runAnimation);
+//		animCom.animations.put(StateComponent.STATE_JUMPING, runAnimation);
+//		animCom.animations.put(StateComponent.STATE_FALLING, runAnimation);
 //		animCom.animations.put(StateComponent.STATE_HIT, tempiRun);
-		animCom.animations.put(StateComponent.STATE_MOVING, tempiRun);
+		animCom.animations.put(StateComponent.STATE_MOVING, runAnimation);
 
 		b2dbody.body = bodyFactory.makeCirclePolyBody(
 				playerData.getxPos(),playerData.getyPos(), playerData.getHeight(), 

@@ -10,7 +10,6 @@ public class PlayerData extends DataObject {
 	private float width;
 	private float height;
 	
-	private TextureRegion texReg;
 	private Animation runAnimation;
 	private Animation jumpAnimation;
 	
@@ -31,15 +30,6 @@ public class PlayerData extends DataObject {
 	public void setCharacter(int character){
 		this.character = character;
 	}
-	
-	public void setTextureRegion(TextureRegion tex){
-	    texReg = tex;
-	}
-	
-	public TextureRegion getTextureRegion(){
-		return texReg;
-	}
-
 	
 	public void setRunAnimation(Animation anim){
 	    runAnimation = anim;

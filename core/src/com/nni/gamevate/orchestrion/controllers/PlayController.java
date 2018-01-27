@@ -49,36 +49,26 @@ public class PlayController extends AbstractController {
 	}
 	
 	private void initRy(){
-		TextureRegion texRy = new TextureRegion(Orchestrion.assetManager.get(AssetDescriptors.RY).findRegion("ryRun"));
-
 		Animation ryRunAnimation = new Animation(0.1f,
 				Orchestrion.assetManager.get(AssetDescriptors.RY).findRegions("ryRun"), PlayMode.LOOP);
 		
 		if (ryRunAnimation != null)
 			Logger.log("Run Annimation : " + ryRunAnimation);
 		
-		if (texRy != null)
-			Logger.log("Texture Region : " + texRy);
 		
 		playerData.setRunAnimation(ryRunAnimation);
-		playerData.setTextureRegion(texRy);
 		
 	}
 	
-	private void initTempi(){
-		TextureRegion tex = new TextureRegion(Orchestrion.assetManager.get(AssetDescriptors.TEMPI).findRegion("tempiRun"));
-		
+	private void initTempi(){	
 		Animation tempiRunAnimation = new Animation(0.1f,
 				Orchestrion.assetManager.get(AssetDescriptors.TEMPI).findRegions("tempiRun"), PlayMode.LOOP);
 		
 		if (tempiRunAnimation != null)
 			Logger.log("Run Annimation Tempi : " + tempiRunAnimation);
 		
-		if (tex != null)
-			Logger.log("Texture Region : " + tex);
 		
 		playerData.setRunAnimation(tempiRunAnimation);
-		playerData.setTextureRegion(tex);
 		
 	}
 

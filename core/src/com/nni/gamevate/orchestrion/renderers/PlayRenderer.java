@@ -110,9 +110,9 @@ public class PlayRenderer implements Renderer {
 		
 		renderSystem.addedToEngine(engine);
 		
-		Music music = Orchestrion.assetManager.get(AssetDescriptors.FUR_ELISE);
-		music.setLooping(false);
-		music.play();
+		//Music music = Orchestrion.assetManager.get(AssetDescriptors.FUR_ELISE);
+		//music.setLooping(false);
+		//music.play();
 	}
 
 	@Override

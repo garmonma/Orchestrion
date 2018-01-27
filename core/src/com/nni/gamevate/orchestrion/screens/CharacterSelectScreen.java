@@ -28,7 +28,7 @@ public class CharacterSelectScreen extends ScreenAdapter {
 
 	public boolean characterSelected = true;
 
-	public int selectedCharacter = CharacterConstants.TEMPI;
+	public int selectedCharacter = CharacterConstants.RY;
 
 	private GameData gameData;
 

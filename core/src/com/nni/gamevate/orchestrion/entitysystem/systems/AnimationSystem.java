@@ -24,15 +24,18 @@ public class AnimationSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
- 
         AnimationComponent ani = am.get(entity);
         StateComponent state = sm.get(entity);
  
         if(ani.animations.containsKey(state.get())){
             TextureComponent tex = tm.get(entity);
+            System.out.println("State : " + state.get());
+            System.out.println("state time delta increment : " + state.time);
             tex.region = ani.animations.get(state.get()).getKeyFrame(state.time, state.isLooping);
+            
         }
  
         state.time += deltaTime;
+        
     }
 }
